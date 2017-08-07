@@ -8,6 +8,8 @@ class AdminPage {
 
 	private $slug;
 
+	private $sections = [];
+
 	/**
 	 * Constructor
 	 *
@@ -21,12 +23,23 @@ class AdminPage {
 	}
 
 	/**
+	 * Add section
+	 */
+	public function section( $title ) {
+		$section = new Section( $title, count( $this->sections ), $this );
+		$this->sections[] = $section;
+		return $section;
+	}
+
+	/**
 	 * Setup
 	 */
 	public function setup() {
 		add_action( 'admin_menu', function() {
 			add_menu_page( $this->title, $this->title, $this->capability, $this->slug, [ $this, 'render' ] );
 		} );
+
+		add_action( 'admin_init', [ $this, 'initialize_sections' ] );
 	}
 
 	/**
@@ -35,7 +48,7 @@ class AdminPage {
 	public function render() {
 		?>
 		<form action="options.php" method="post">
-			<h2><?php echo esc_html( $this->title ); ?></h2>
+			<h1><?php echo esc_html( $this->title ); ?></h1>
 
 			<?php
 			settings_fields( $this->slug );
@@ -44,6 +57,24 @@ class AdminPage {
 			?>
 		</form>
 		<?php
+	}
+
+	/**
+	 * Initialize sections
+	 */
+	public function initialize_sections() {
+		foreach ( $this->sections as $section ) {
+			$section->initialize();
+		}
+	}
+
+	/**
+	 * Get slug
+	 *
+	 * @return string
+	 */
+	public function get_slug() {
+		return $this->slug;
 	}
 
 }
