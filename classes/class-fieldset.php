@@ -79,6 +79,20 @@ class FieldSet {
 	}
 
 	/**
+	 * Create radio field
+	 *
+	 * @param string $name Field name
+	 * @param string $label Field label
+	 * @param string $items Radio items
+	 *
+	 * @return Fieldset Fieldset instance
+	 */
+	public function radio( $name, $label, $items ) {
+		$this->fields[] = new Fields\RadioField( $name, $label, $this->options_id, $this->options, $items );
+		return $this;
+	}
+
+	/**
 	 * Create custom field
 	 *
 	 * @param string $name Field name

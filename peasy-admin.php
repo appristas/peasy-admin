@@ -21,6 +21,7 @@ add_action( 'init', function() {
 	require_once( __DIR__ . '/classes/fields/class-dropdownfield.php' );
 	require_once( __DIR__ . '/classes/fields/class-checkboxfield.php' );
 	require_once( __DIR__ . '/classes/fields/class-customfield.php' );
+	require_once( __DIR__ . '/classes/fields/class-radiofield.php' );
 
 	do_action( 'peasy_init' );
 } );
