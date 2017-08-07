@@ -11,7 +11,7 @@ An easy-pease API to build custom admin pages
 
 == Description ==
 
-This plugin utiliez Options and Settings API and provides an easy to use to API to build custom admin pages.
+This plugin utilizes Options and Settings API and provides an easy to use to API to build custom admin pages.
 
 = Resources =
 * WordPress Plugin: https://wordpress.org/plugins/peasy-admin/
