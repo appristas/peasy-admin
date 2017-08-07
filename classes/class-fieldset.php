@@ -64,6 +64,21 @@ class FieldSet {
 	}
 
 	/**
+	 * Create checkbox field
+	 *
+	 * @param string $name Field name
+	 * @param string $label Field label
+	 * @param string $checkbox_label Checkbox label
+	 * @param string $checkbox_value Checkbox value
+	 *
+	 * @return Fieldset Fieldset instance
+	 */
+	public function checkbox( $name, $label, $checkbox_label, $checkbox_value ) {
+		$this->fields[] = new Fields\CheckboxField( $name, $label, $this->options_id, $this->options, $checkbox_label, $checkbox_value );
+		return $this;
+	}
+
+	/**
 	 * Create custom field
 	 *
 	 * @param string $name Field name
