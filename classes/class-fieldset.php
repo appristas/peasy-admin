@@ -37,6 +37,19 @@ class FieldSet {
 	}
 
 	/**
+	 * Create textarea field
+	 *
+	 * @param string $name Field name
+	 * @param string $label Field label
+	 *
+	 * @return Fieldset Fieldset instance
+	 */
+	public function textarea( $name, $label ) {
+		$this->fields[] = new Fields\TextareaField( $name, $label, $this->options_id, $this->options );
+		return $this;
+	}
+
+	/**
 	 * Create dropdown field
 	 *
 	 * @param string $name Field name
