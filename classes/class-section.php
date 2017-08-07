@@ -2,6 +2,8 @@
 
 namespace PeasyAdmin;
 
+defined( 'ABSPATH' ) or die( 'Tacita' );
+
 class Section {
 
 	private $id;
@@ -12,7 +14,7 @@ class Section {
 
 	private $description = null;
 
-	private $fields;
+	private $fields = [];
 
 	private $callback;
 
@@ -55,10 +57,27 @@ class Section {
 	}
 
 	/**
+	 * Create text field
+	 *
+	 * @param $name
+	 * @param $label
+	 *
+	 * @return Section Section Instance
+	 */
+	public function text_field( $name, $label ) {
+		$this->fields[] = new Field( $name, $label, 'text' );
+		return $this;
+	}
+
+	/**
 	 * Initialize
 	 */
 	public function initialize() {
 		add_settings_section( $this->get_id(), $this->title, $this->callback, $this->adminpage->get_id() );
+
+		foreach ( $this->fields as $field ) {
+			$field->initialize( $this->get_id(), $this->adminpage->get_id() );
+		}
 	}
 
 	/**

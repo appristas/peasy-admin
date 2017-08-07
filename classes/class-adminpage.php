@@ -2,6 +2,8 @@
 
 namespace PeasyAdmin;
 
+defined( 'ABSPATH' ) or die( 'Tacita' );
+
 class AdminPage {
 
 	private $title;
