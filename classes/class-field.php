@@ -4,13 +4,11 @@ namespace PeasyAdmin;
 
 defined( 'ABSPATH' ) or die( 'Tacita' );
 
-class Field {
+abstract class Field {
 
-	private $name;
+	protected $name;
 
-	private $label;
-
-	private $callback;
+	protected $label;
 
 	/**
 	 * Constructor
@@ -19,33 +17,15 @@ class Field {
 	 * @param string $label Field label
 	 * @param string|callable $type Field type
 	 */
-	public function __construct( $name, $label, $type = 'text' ) {
+	public function __construct( $name, $label ) {
 		$this->name = $name;
 		$this->label = $label;
-		if ( is_string( $type ) ) {
-			$type = [ $this, 'display_' . $type ];
-		}
-
-		if ( is_callable( $type ) ) {
-			$this->callback = $type;
-		}
 	}
 
 	/**
 	 * Render callback
 	 */
-	public function display() {
-		call_user_func( $this->callback, $this->name, $this->label );
-	}
-
-	/**
-	 * Render Text callback
-	 */
-	public function display_text( $name, $label ) {
-		?>
-		<input type="<?php echo esc_html( $name ); ?>">
-		<?php
-	}
+	abstract public function display();
 
 	/**
 	 * Get name

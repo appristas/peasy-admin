@@ -14,7 +14,7 @@ class Section {
 
 	private $description = null;
 
-	private $fields = [];
+	private $fieldset;
 
 	private $callback;
 
@@ -27,6 +27,7 @@ class Section {
 	 */
 	public function __construct( $title, $num, $adminpage ) {
 		$this->num = $num;
+		$this->fieldset = new Fieldset;
 		$this->callback = [ $this, 'callback_default' ];
 		$this->title = $title;
 		$this->adminpage = $adminpage;
@@ -57,16 +58,12 @@ class Section {
 	}
 
 	/**
-	 * Create text field
+	 * Get fieldset object
 	 *
-	 * @param $name
-	 * @param $label
-	 *
-	 * @return Section Section Instance
+	 * @return Fieldset Fieldset object
 	 */
-	public function text_field( $name, $label ) {
-		$this->fields[] = new Field( $name, $label, 'text' );
-		return $this;
+	public function fields() {
+		return $this->fieldset;
 	}
 
 	/**
@@ -75,7 +72,7 @@ class Section {
 	public function initialize() {
 		add_settings_section( $this->get_id(), $this->title, $this->callback, $this->adminpage->get_id() );
 
-		foreach ( $this->fields as $field ) {
+		foreach ( $this->fieldset->items() as $field ) {
 			$field->initialize( $this->get_id(), $this->adminpage->get_id() );
 		}
 	}

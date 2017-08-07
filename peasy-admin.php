@@ -10,6 +10,8 @@
 
 defined( 'ABSPATH' ) or die( 'Tacita' );
 
+require_once( __DIR__ . '/classes/class-fieldset.php' );
 require_once( __DIR__ . '/classes/class-adminpage.php' );
 require_once( __DIR__ . '/classes/class-section.php' );
 require_once( __DIR__ . '/classes/class-field.php' );
+require_once( __DIR__ . '/classes/fields/class-textfield.php' );
