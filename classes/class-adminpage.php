@@ -51,8 +51,8 @@ class AdminPage {
 			<h1><?php echo esc_html( $this->title ); ?></h1>
 
 			<?php
-			settings_fields( $this->slug );
-			do_settings_sections( $this->slug );
+			settings_fields( $this->get_id() );
+			do_settings_sections( $this->get_id() );
 			submit_button();
 			?>
 		</form>
@@ -68,13 +68,11 @@ class AdminPage {
 		}
 	}
 
-	/**
-	 * Get slug
-	 *
-	 * @return string
+	/*
+	 * Get ID (slug underscored)
 	 */
-	public function get_slug() {
-		return $this->slug;
+	public function get_id() {
+		return str_replace( '-', '_', $this->slug );
 	}
 
 }

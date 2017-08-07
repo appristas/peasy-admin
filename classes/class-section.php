@@ -20,11 +20,11 @@ class Section {
 	 * Constructor
 	 *
 	 * @param string $title Title
-	 * @param int $id ID
+	 * @param int $num Num (Used for ID)
 	 * @param AdminPage $adminpage Admin Page instance
 	 */
-	public function __construct( $title, $id, $adminpage ) {
-		$this->id = $id;
+	public function __construct( $title, $num, $adminpage ) {
+		$this->num = $num;
 		$this->callback = [ $this, 'callback_default' ];
 		$this->title = $title;
 		$this->adminpage = $adminpage;
@@ -58,7 +58,7 @@ class Section {
 	 * Initialize
 	 */
 	public function initialize() {
-		add_settings_section( $this->get_slug(), $this->title, $this->callback, $this->adminpage->get_slug() );
+		add_settings_section( $this->get_id(), $this->title, $this->callback, $this->adminpage->get_id() );
 	}
 
 	/**
@@ -73,10 +73,10 @@ class Section {
 	}
 
 	/**
-	 * Get section slug
+	 * Get section ID
 	 */
-	private function get_slug() {
-		return sprintf( '%s_section_%d', str_replace( '-', '_', $this->adminpage->get_slug() ), $this->id );
+	private function get_id() {
+		return sprintf( '%s_section_%d', $this->adminpage->get_id(), $this->num );
 	}
 
 }
