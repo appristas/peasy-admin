@@ -12,6 +12,8 @@ class AdminPage {
 
 	private $sections = [];
 
+	private $options;
+
 	/**
 	 * Constructor
 	 *
@@ -22,6 +24,11 @@ class AdminPage {
 		$this->title = $title;
 		$this->slug = $slug;
 		$this->capability = $capability;
+
+		$this->options = get_option( $this->get_id() );
+		if ( ! $this->options ) {
+			$this->options = [];
+		}
 	}
 
 	/**
@@ -65,6 +72,7 @@ class AdminPage {
 	 * Initialize sections
 	 */
 	public function initialize_sections() {
+		register_setting( $this->get_id(), $this->get_id() );
 		foreach ( $this->sections as $section ) {
 			$section->initialize();
 		}
@@ -75,6 +83,13 @@ class AdminPage {
 	 */
 	public function get_id() {
 		return str_replace( '-', '_', $this->slug );
+	}
+
+	/**
+	 * Get options
+	 */
+	public function get_options() {
+		return $this->options;
 	}
 
 }

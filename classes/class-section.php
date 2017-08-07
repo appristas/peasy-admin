@@ -27,7 +27,7 @@ class Section {
 	 */
 	public function __construct( $title, $num, $adminpage ) {
 		$this->num = $num;
-		$this->fieldset = new Fieldset;
+		$this->fieldset = new Fieldset( $adminpage->get_id(), $adminpage->get_options() );
 		$this->callback = [ $this, 'callback_default' ];
 		$this->title = $title;
 		$this->adminpage = $adminpage;
