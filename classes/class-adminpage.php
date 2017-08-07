@@ -56,15 +56,18 @@ class AdminPage {
 	 */
 	public function render() {
 		?>
-		<form action="options.php" method="post">
-			<h1><?php echo esc_html( $this->title ); ?></h1>
-
-			<?php
-			settings_fields( $this->get_id() );
-			do_settings_sections( $this->get_id() );
-			submit_button();
-			?>
-		</form>
+		<div class="wrap">
+			<h1 class="wp-heading-inline"><?php echo esc_html( $this->title ); ?></h1>
+			<hr class="wp-header-end">
+			
+			<form action="options.php" method="post">
+				<?php
+				settings_fields( $this->get_id() );
+				do_settings_sections( $this->get_id() );
+				submit_button();
+				?>
+			</form>
+		</div>
 		<?php
 	}
 
