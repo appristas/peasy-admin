@@ -51,6 +51,21 @@ class FieldSet {
 	}
 
 	/**
+	 * Create custom field
+	 *
+	 * @param string $name Field name
+	 * @param string $label Field label
+	 * @param callable $callback Custom function
+	 *
+	 * @return Fieldset Fieldset instance
+	 */
+	public function custom( $name, $label, $callback ) {
+		$this->fields[] = new Fields\CustomField( $name, $label, $this->options_id, $this->options, $callback );
+		return $this;
+	}
+
+
+	/**
 	 * Get a list of items
 	 *
 	 * @return array List of items

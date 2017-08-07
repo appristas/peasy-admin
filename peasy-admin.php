@@ -17,3 +17,4 @@ require_once( __DIR__ . '/classes/class-field.php' );
 
 require_once( __DIR__ . '/classes/fields/class-textfield.php' );
 require_once( __DIR__ . '/classes/fields/class-dropdownfield.php' );
+require_once( __DIR__ . '/classes/fields/class-customfield.php' );
