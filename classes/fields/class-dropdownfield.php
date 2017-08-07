@@ -17,9 +17,10 @@ class DropdownField extends Field {
 
 	public function display() {
 		?>
-		<select name="<?php echo esc_html( $this->name ); ?>">
+		<select name="<?php echo esc_html( $this->get_name() ); ?>">
 			<?php foreach ( $this->items as $key => $value ) : ?>
-			<option value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value ); ?></option>
+				<?php $selected = ( $this->get_value() == $key ) ? ' selected' : ''; ?>
+				<option value="<?php echo esc_html( $key ); ?>"<?php echo esc_html( $selected ); ?>><?php echo esc_html( $value ); ?></option>
 			<?php endforeach; ?>
 		</select>
 		<?php
