@@ -14,7 +14,7 @@ class TextareaField extends Field {
 
 	public function display() {
 		?>
-		<textarea name="<?php echo esc_html( $this->get_name() ); ?>"><?php echo esc_html( $this->get_value() ); ?></textarea>
+		<textarea name="<?php echo esc_html( $this->get_name() ); ?>" rows="5" cols="30"><?php echo esc_html( $this->get_value() ); ?></textarea>
 		<?php
 	}
 

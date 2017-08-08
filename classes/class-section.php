@@ -70,7 +70,7 @@ class Section {
 	 * Initialize
 	 */
 	public function initialize() {
-		add_settings_section( $this->get_id(), $this->title, $this->callback, $this->adminpage->get_id() );
+		add_settings_section( $this->get_id(), $this->title, [ $this, 'display_content' ], $this->adminpage->get_id() );
 
 		foreach ( $this->fieldset->items() as $field ) {
 			$field->initialize( $this->get_id(), $this->adminpage->get_id() );
@@ -80,12 +80,14 @@ class Section {
 	/**
 	 * Default section display callback
 	 */
-	public function callback_default() {
-		if ( $this->description ) :
+	public function display_content() {
+		if ( $this->callback ) {
+			call_user_func( $this->callback, $this->description );
+		} elseif ( $this->description ) {
 		?>
 			<p><?php echo esc_html( $this->description ); ?></p>
 		<?php
-		endif;
+		}
 	}
 
 	/**
