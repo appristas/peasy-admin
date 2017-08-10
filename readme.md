@@ -14,7 +14,7 @@ You can install this plugin in two ways:
 1. Install the plugin from [Wordpress Plugins](wp-plugin)
 2. To install the plugin using Composer and [wpackagist](wpackagist), add the following line to composer.json:
 
-	"wpackagist-plugin/peasy-admin": "1.0"
+	"wpackagist-plugin/peasy-admin": "1.0.1"
 
 
 [wp-plugin]: https://wordpress.org/plugins/peasy-admin/
@@ -31,130 +31,12 @@ As the Settings API, Peasy Admin consists of the following elements: AdminPage, 
     
 `AdminPage` class requires title and slug parameters to create the admin page. `setup` method is needed to transform Peasy API into settings API. Therefore, all the sections and fields **must** be defined before `setup`.
 
-### Sections
-Sections are created in using the `section` function with section title.
+## Reference
 
-	$section = $admin_page->section( 'Section #1' );
-    
-If you want to add description to section, you can do so using the `description` function:
+Checkout the [Wiki](wiki) for usage, examples, and API reference.
 
-	$section->description( 'This is section #1' );
-    
-If you want to have custom view for section content, you can do so using the `callback` function:
+[wiki](https://github.com/appristas/peasy-admin/wiki)
 
-	$section->callback( function( $description ) {
-    	?>
-        <p style="color: red"><?php echo esc_html( $description ); ?></p>
-        <?php
-    } );
-    
-### Fields
-
-All the fields in a section are stored in a container called FieldSet. This fieldset can be accesses using the `fields` function.
-
-	$fields = $section->fields();
-
-There are five fields that are baked into Peasy Admin. All the fields have two mandatory parameters: name and label. Label parameter is used to properly label the field in a form table while the name parameter is used to properly save it in the database.
-
-#### Text Field:
-
-	$fields->text( $name, $label, $type = 'text' );
-    
-This field creates a input HTML element with different types (email, date, datetime, number) related to `text`. The following example creates a text field with type `email`:
-
-	$fields->text( 'email', 'My email', 'email' );
-
-#### Textarea Field
-
-	$fields->textarea( $name, $label );
-    
-This field creates textarea element. Example:
-
-	$fields->textarea( 'about', 'About me' );
-
-#### Checkbox Field:
-
-	$fields->checkbox( $name, $label, $checkbox_label, $checkbox_value );
-    
-The last two arguments of these fields provide the value and the label for the checkbox element. Example:
-
-	$fields->checkbox( 'tos', 'Agreeing to TOS?', 'Click to agree', 1 );
-    
-#### Radio Field:
-
-	$fields->radio( $name, $label, $items );
-    
-The items parameter accepts array as input and creates the radio items. Example:
-
-	$fields->radio( 'How do you get to work?', 'Bike or Car', [
-    	'bike' => 'Bike',
-        'car' => 'Car',
-        'walk' => 'Walk',
-        'subway' => 'Subway',
-    ] );
-    
-In this example, the keys are the radio input value while the values of the array are the labels for the radio.
-
-#### Dropdown Field:
-
-	$fields->dropdown( $name, $label, $items );
-    
-The items parameter in dropdown field is similar to the items parameter in radio field. In dropdown field, the items array creates the select box items for the dropdown. Example:
-
-	$fields->dropdown( 'fruits', 'Fruits', [
-    	'apple' => 'Apple',
-        'orange' => 'Orange',
-    ] );
-
-#### Custom Field:
-
-	$fields->custom( $name, $label, $callback );
-    
-Custom field is used to create custom controls. The callback parameter of this field is a function that has name and value parameters. Anything written in a custom field is up to the developer. Here is an example of creating a textare field using custom field:
-
-	$fields->custom( 'big_textarea', 'Big Textarea', function( $name, $value ) {
-    	?>
-        <textarea name="<?php echo esc_html( $name ); ?>" style="width: 500px; height: 250px"><?php echo esc_html( $value ); ?></textarea>
-        <?php
-    } );
-    
-### Wrapping it all together
-
-Here is the resulting code of adding all the fields and sections together:
-
-	add_action( 'peasy_init', function() {
-    	$admin_page = new PeasyAdmin\AdminPage( 'My Admin Page', 'my-admin-page' );
-        
-        $admin_page->section( 'Section #1' )
-        		->description( 'This is section #1' )
-                ->callback( function( $description ) {
-                	?>
-                    <p style="color: red"><?php echo esc_html( $description ); ?></p>
-                    <?php
-                } )
-                ->fields()
-                	->text( 'email', 'My email', 'email' )
-                    ->textarea( 'about', 'About me' )
-                    ->checkbox( 'tos', 'Agreeing to TOS?', 'Click to agree', 1 )
-                    ->radio( 'How do you get to work?', 'Bike or Car', [
-    					'bike' => 'Bike',
-				        'car' => 'Car',
-				        'walk' => 'Walk',
-				        'subway' => 'Subway',
-				    ] )
-                    ->dropdown( 'fruits', 'Fruits', [
-    					'apple' => 'Apple',
-				        'orange' => 'Orange',
-				    ] )
-                    ->custom( 'big_textarea', 'Big Textarea', function( $name, $value ) {
-                        ?>
-                        <textarea name="<?php echo esc_html( $name ); ?>" style="width: 500px; height: 250px"><?php echo esc_html( $value ); ?></textarea>
-                        <?php
-                    } );
-
-        $admin_page->setup();
-    } );
-    
 ## Contributing
 
 This project adheres to the [Open Code of Conduct][code-of-conduct]. By participating, you are expected to honor this code.
