@@ -33,7 +33,7 @@ As the Settings API, Peasy Admin consists of the following elements: AdminPage, 
 
 ## Reference
 
-Checkout the [Wiki](wiki) for usage, examples, and API reference.
+Check out the [Wiki](wiki) for usage, examples, and API reference.
 
 [wiki]: https://github.com/appristas/peasy-admin/wiki
 
