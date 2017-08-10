@@ -14,7 +14,8 @@ You can install this plugin in two ways:
 1. Install the plugin from [Wordpress Plugins](wp-plugin)
 2. To install the plugin using Composer and [wpackagist](wpackagist), add the following line to composer.json:
 
-	"wpackagist-plugin/peasy-admin": "1.0"
+    "wpackagist-plugin/peasy-admin": "1.0"
+
 
 [wp-plugin]: https://wordpress.org/plugins/peasy-admin/
 [wpackagist]: https://wpackagist.org/search?q=peasy-admin&type=any&search=
