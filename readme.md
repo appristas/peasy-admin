@@ -25,7 +25,7 @@ You can install this plugin in two ways:
 As the Settings API, Peasy Admin consists of the following elements: AdminPage, Section, and Field. First, let's create an admin page. It is recommended to use `peasy_init` action to ensure that the page will be generated without worrying about the order of plugins:
 
 	add_action( 'peasy_init', function() {
-    	$admin_page = new PeasyAdmin\AdminPage( 'My Admin Page', 'my-admin-page' );
+        $admin_page = new PeasyAdmin\AdminPage( 'My Admin Page', 'my-admin-page' );
         $admin_page->setup();
     } );
     
