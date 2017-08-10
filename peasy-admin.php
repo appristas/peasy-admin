@@ -23,5 +23,7 @@ add_action( 'init', function() {
 	require_once( __DIR__ . '/classes/fields/class-customfield.php' );
 	require_once( __DIR__ . '/classes/fields/class-radiofield.php' );
 
+	require_once( __DIR__ . '/classes/class-option.php' );
+
 	do_action( 'peasy_init' );
 } );
