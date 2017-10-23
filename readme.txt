@@ -2,8 +2,8 @@
 Contributors: ggasimzada
 Tags: admin, page, admin page, options, settings, api, settings api, options api, peasy, admin, peasy admin
 Requires at least: 4.5
-Tested up to: 4.7
-Stable Tag: 1.0.2
+Tested up to: 4.8
+Stable Tag: 1.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -30,6 +30,9 @@ This plugin utilizes Options and Settings API and provides an easy to use to API
 A. PHP 5.4+
 
 == Change Log ==
+
+= 1.0.3 =
+* Added media field
 
 = 1.0.2 =
 * Bug fixes

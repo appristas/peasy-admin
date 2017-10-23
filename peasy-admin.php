@@ -3,7 +3,7 @@
  * Plugin Name: Peasy Admin
  * Plugin URI: https://github.com/appristas/peasy-admin
  * Description: An easy-pease API to build custom admin pages
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Appristas LLC
  * Author URI: www.appristas.io
  */
@@ -22,6 +22,7 @@ add_action( 'init', function() {
 	require_once( __DIR__ . '/classes/fields/class-checkboxfield.php' );
 	require_once( __DIR__ . '/classes/fields/class-customfield.php' );
 	require_once( __DIR__ . '/classes/fields/class-radiofield.php' );
+	require_once( __DIR__ . '/classes/fields/class-mediafield.php' );
 
 	require_once( __DIR__ . '/classes/class-option.php' );
 

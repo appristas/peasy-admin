@@ -93,6 +93,17 @@ class FieldSet {
 	}
 
 	/**
+	 * Create media field
+	 *
+	 * @param string $name Field name
+	 * @param string $label FIeld label
+	 */
+	public function media( $name, $label ) {
+		$this->fields[] = new Fields\MediaField( $name, $label, $this->options_id, $this->options );
+		return $this;
+	}
+
+	/**
 	 * Create custom field
 	 *
 	 * @param string $name Field name

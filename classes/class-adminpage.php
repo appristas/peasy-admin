@@ -49,6 +49,16 @@ class AdminPage {
 		} );
 
 		add_action( 'admin_init', [ $this, 'initialize_sections' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+	}
+
+	/**
+	 * Enqueue scripts
+	 */
+	public function enqueue_scripts() {
+		wp_enqueue_media();
+		wp_enqueue_script( 'pa-media-js', plugins_url( 'assets/media.js', __DIR__ ), '1.0.3' );
+		wp_enqueue_style( 'pa-media-css', plugins_url( 'assets/media.css', __DIR__ ), '1.0.3' );
 	}
 
 	/**
