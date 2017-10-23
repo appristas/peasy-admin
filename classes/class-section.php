@@ -78,15 +78,22 @@ class Section {
 	}
 
 	/**
+	 * Callback default
+	 */
+	public function callback_default() {
+		if ( $this->description ) {
+			?>
+			<p><?php echo esc_html( $this->description ); ?></p>
+			<?php
+		}
+	}
+
+	/**
 	 * Default section display callback
 	 */
 	public function display_content() {
 		if ( $this->callback ) {
 			call_user_func( $this->callback, $this->description );
-		} elseif ( $this->description ) {
-		?>
-			<p><?php echo esc_html( $this->description ); ?></p>
-		<?php
 		}
 	}
 
