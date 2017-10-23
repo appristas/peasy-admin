@@ -31,6 +31,9 @@ A. PHP 5.4+
 
 == Change Log ==
 
+= 1.0.2 =
+* Bug fixes
+
 = 1.0.1 =
 * Added API for retrieving options
 
