@@ -31,6 +31,9 @@ A. PHP 5.4+
 
 == Change Log ==
 
+= 1.0.4 =
+* Fixed a bug where multiple fields were used
+
 = 1.0.3 =
 * Added media field
 

@@ -1,10 +1,9 @@
 (function($) {
     $(document).ready(function() {
-        $('.js-media-button').each(function() {
-            frameId = $(this).data('media-frame');
-            targetContainer = $('#' + $(this).data('target-image'));
-            targetInput = $('[name="' + $(this).data('target-name') + '"]');
-            btn = $(this);
+        function setup_frame(button) {
+            frameId = button.data('media-frame');
+            targetContainer = $('#' + button.data('target-image'));
+            targetInput = $('[name="' + button.data('target-name') + '"]');
 
             wp.media.frames[frameId] = wp.media({
                 title: 'Select image',
@@ -19,17 +18,19 @@
 
             wp.media.frames[frameId].on('select', function() {
                 selection = wp.media.frames[frameId].state().get('selection').first();
+                console.log(targetContainer);
                 targetImage = targetContainer.find('img');
                 targetImage.prop('src', selection.attributes.url);
                 targetContainer.removeClass('hidden');
                 targetInput.val(selection.attributes.url);
-                btn.addClass('hidden');
+                button.addClass('hidden');
             });
-        });
+        }
 
         $('.js-media-button').click(function(e) {
             e.preventDefault();
-            frameId = $(this).data('media-frame')
+            setup_frame($(this));
+            frameId = $(this).data('media-frame');
             wp.media.frames[frameId].open();
         });
 
