@@ -51,7 +51,7 @@ class MediaField extends Field {
 			</button>
 		</div>
 		
-		<input type="hidden" name="<?php echo esc_html( $this->get_name() ); ?>">
+		<input type="hidden" name="<?php echo esc_html( $this->get_name() ); ?>" value="<?php echo esc_html( $value ); ?>">
 		<?php
 	}
 
