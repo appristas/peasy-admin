@@ -57,8 +57,8 @@ class AdminPage {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_media();
-		wp_enqueue_script( 'pa-media-js', plugins_url( 'assets/media.js', __DIR__ ), '1.0.4' );
-		wp_enqueue_style( 'pa-media-css', plugins_url( 'assets/media.css', __DIR__ ), '1.0.4' );
+		wp_enqueue_script( 'pa-media-js', plugins_url( 'assets/media.js', __DIR__ ), '1.1.0' );
+		wp_enqueue_style( 'pa-media-css', plugins_url( 'assets/media.css', __DIR__ ), '1.1.0' );
 	}
 
 	/**
