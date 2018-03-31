@@ -117,6 +117,22 @@ class FieldSet {
 		return $this;
 	}
 
+	/**
+	 * Magic call function
+	 *
+	 * This function is used for 3rd party plugins registering their fields
+	 *
+	 * @param string $method Method
+	 * @param array $args Arguments
+	 */
+	public function __call( $method, $args ) {
+		$field_class = PluggableFields::get_registered_field( $method );
+		if ( $field_class !== null ) {
+			$reflection = new \ReflectionClass( $field_class );
+			$this->fields[] = $reflection->newInstanceArgs( array_merge( $args, [ $this->options_id, $this->options ] ) );
+		}
+		return $this;
+	}
 
 	/**
 	 * Get a list of items

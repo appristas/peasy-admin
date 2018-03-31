@@ -26,5 +26,8 @@ add_action( 'init', function() {
 
 	require_once( __DIR__ . '/classes/class-option.php' );
 
+	require_once( __DIR__ . '/classes/class-pluggablefields.php' );
+
+	do_action( 'peasy_register' );
 	do_action( 'peasy_init' );
 } );
