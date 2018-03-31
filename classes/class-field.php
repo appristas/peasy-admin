@@ -62,4 +62,22 @@ abstract class Field {
 		return isset( $this->options[ $this->name ] ) ? $this->options[ $this->name ] : null;
 	}
 
+	/**
+	 * Get field name
+	 *
+	 * @return string Field name
+	 */
+	public function get_field_name() {
+		return $this->name;
+	}
+
+	/**
+	 * Process value
+	 *
+	 * @return string Processed value
+	 */
+	public function process_value( $value ) {
+		return $value;
+	}
+
 }

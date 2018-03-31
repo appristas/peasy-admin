@@ -82,10 +82,25 @@ class AdminPage {
 	}
 
 	/**
+	 * Sanitize fields before submission
+	 */
+	public function process_fields( $input ) {
+		foreach ( $this->sections as $section ) {
+			$fields = $section->fields();
+			foreach ( $fields->items() as $field ) {
+				$val = $input[ $field->get_field_name() ];
+				$input[ $field->get_field_name() ] = $field->process_value( $val );
+			}
+		}
+
+		return $input;
+	}
+
+	/**
 	 * Initialize sections
 	 */
 	public function initialize_sections() {
-		register_setting( $this->get_id(), $this->get_id() );
+		register_setting( $this->get_id(), $this->get_id(), [ $this, 'process_fields' ] );
 		foreach ( $this->sections as $section ) {
 			$section->initialize();
 		}
