@@ -3,13 +3,22 @@
 	top: 10px;
 	right: 10px;
 	color: #0085ba;
-	background: transparent;
+	background: white;
 	border: 0px;
 	cursor: pointer;
 	padding: 0px;
 }
 
 .thumbnail-container {
-	width: 200px;
+	display: block;
+	width: 300px;
 	position: relative;
+}
+
+.thumbnail-container.hidden {
+	display: none;
+}
+
+.thumbnail-container img {
+	max-width: 100%;
 }
