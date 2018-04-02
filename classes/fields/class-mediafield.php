@@ -22,36 +22,38 @@ class MediaField extends Field {
 		$button_id = 'button_' . $this->name;
 		$value = $this->get_value();
 		if ( empty ( $value ) ) {
-			$value = '#';
+			$value = 0;
 			$hidden = 'hidden ';
+			$image = '#';
 		} else {
 			$hidden = '';
+			$image = wp_get_attachment_url( $value );
 		}
 		?>
 		<button
 			type="button"
-			id="<?php echo esc_html( $button_id ); ?>"
+			id="<?php echo esc_attr( $button_id ); ?>"
 			class="js-media-button button button-primary"
-			data-media-frame="<?php echo esc_html( $media_id ); ?>"
-			data-target-image="<?php echo esc_html( $media_image_id ); ?>"
-			data-target-name="<?php echo esc_html( $this->get_name() ); ?>"
+			data-media-frame="<?php echo esc_attr( $media_id ); ?>"
+			data-target-image="<?php echo esc_attr( $media_image_id ); ?>"
+			data-target-name="<?php echo esc_attr( $this->get_name() ); ?>"
 		>
 			<?php echo esc_html( $this->button_label ); ?>
 		</button>
-		<div class="<?php echo esc_html( $hidden ); ?>thumbnail-container" id="<?php echo esc_html( $media_image_id ); ?>">
-			<img alt="Selected image" src="<?php echo esc_html( $value ); ?>">
+		<div class="<?php echo esc_attr( $hidden ); ?>thumbnail-container" id="<?php echo esc_attr( $media_image_id ); ?>">
+			<img alt="Selected image" src="<?php echo esc_url( $image ); ?>">
 			<button
 				type="button"
 				class="js-media-remove-image button-remove-image"
-				data-target-image="<?php echo esc_html( $media_image_id ); ?>"
-				data-target-button="<?php echo esc_html( $button_id ); ?>"
-				data-target-name="<?php echo esc_html( $this->get_name() ); ?>"
+				data-target-image="<?php echo esc_attr( $media_image_id ); ?>"
+				data-target-button="<?php echo esc_attr( $button_id ); ?>"
+				data-target-name="<?php echo esc_attr( $this->get_name() ); ?>"
 			>
 				<i class="dashicons dashicons-dismiss"></i>
 			</button>
 		</div>
 		
-		<input type="hidden" name="<?php echo esc_html( $this->get_name() ); ?>" value="<?php echo esc_html( $value ); ?>">
+		<input type="hidden" name="<?php echo esc_attr( $this->get_name() ); ?>" value="<?php echo esc_attr( $value ); ?>">
 		<?php
 	}
 

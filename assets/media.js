@@ -18,11 +18,10 @@
 
             wp.media.frames[frameId].on('select', function() {
                 selection = wp.media.frames[frameId].state().get('selection').first();
-                console.log(targetContainer);
                 targetImage = targetContainer.find('img');
                 targetImage.prop('src', selection.attributes.url);
                 targetContainer.removeClass('hidden');
-                targetInput.val(selection.attributes.url);
+                targetInput.val(selection.attributes.id);
                 button.addClass('hidden');
             });
         }
