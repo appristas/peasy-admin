@@ -23,7 +23,45 @@ class Option {
 	}
 
 	/**
-	 * Get option key
+	 * Get attachment
+	 *
+	 * @param string $slug Admin Page slug
+	 * @param string $key Option key
+	 * @param string|array $size Image size(s)
+	 * @param string $return What to return
+	 *
+	 * @return mixed|null Image info if exists, null otherwise
+	 */
+	public static function get_attachment( $slug, $key, $size = 'thumbnail', $return = 'url' ) {
+		$attachment_id = (int) self::get_key( self::get_id( $slug ), $key );
+		$src = wp_get_attachment_image_src( $attachment_id, $size, false );
+
+		if ( $src === false ) {
+			return null;
+		}
+
+		$keys = [ 'url' => 0, 'width' => 1, 'height' => 2, 'is_intermediate' => 3 ];
+
+		if ( $return === 'all' ) {
+			$return = array_keys( $keys );
+		}
+
+		if ( is_string( $return ) ) {
+			return isset( $src[ $keys[ $return ] ] ) ? $src[ $keys[ $return ] ]: null;
+		}
+
+		$result = [];
+		foreach ( $return as $r ) {
+			if ( $src[ $keys[ $r ] ] ) {
+				$result[ $r ] = $src[ $keys[ $r ] ];
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Get option by key
 	 *
 	 * @param string $id Option ID
 	 * @param string $key Option key
